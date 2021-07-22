@@ -12,4 +12,5 @@ app.use((error, request, response, next) => {
   response.sendStatus(500);
 });
 
-app.listen(3001, () => console.log('🔥 Server started at http://localhost:3000'));
+const port = 3333;
+app.listen(port, () => console.log(`🔥 Server started at http://localhost:${port}`));
