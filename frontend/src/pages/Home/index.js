@@ -58,51 +58,6 @@ export default function Home() {
             </button>
           </div>
         </Card>
-
-        <Card>
-          <div className="info">
-            <div className="info-header">
-              <strong>Mateu Silva</strong>
-              <small>Instagram</small>
-            </div>
-
-            <span>mateus@devacademy.com.br</span>
-            <span>(41) 99999-9999</span>
-          </div>
-
-          <div className="actions">
-            <Link to="/edit/34231">
-              <img src={edit} alt="Edit Contact" />
-            </Link>
-
-            <button type="button">
-              <img src={trash} alt="Delete Contact" />
-            </button>
-          </div>
-        </Card>
-
-        <Card>
-          <div className="info">
-            <div className="info-header">
-              <strong>Mateu Silva</strong>
-              <small>Instagram</small>
-            </div>
-
-            <span>mateus@devacademy.com.br</span>
-            <span>(41) 99999-9999</span>
-          </div>
-
-          <div className="actions">
-            <Link to="/edit/42432">
-              <img src={edit} alt="Edit Contact" />
-            </Link>
-
-            <button type="button">
-              <img src={trash} alt="Delete Contact" />
-            </button>
-          </div>
-        </Card>
-
       </ListContainer>
 
     </Container>

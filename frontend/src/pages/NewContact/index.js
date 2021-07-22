@@ -8,6 +8,7 @@ import Input from '../../components/Input';
 import Select from '../../components/Select';
 
 import isEmailValid from '../../utils/isEmailValid';
+import formatPhone from '../../utils/formatPhone';
 import useError from '../../hooks/useErrors';
 
 export default function NewContact() {
@@ -16,7 +17,14 @@ export default function NewContact() {
   const [phone, setPhone] = useState('');
   const [category, setCategory] = useState('');
 
-  const { setError, removeError, getErrorMessageByFieldName } = useError();
+  const {
+    errors,
+    setError,
+    removeError,
+    getErrorMessageByFieldName,
+  } = useError();
+
+  const isDisable = (name && phone && errors.length === 0);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -40,13 +48,13 @@ export default function NewContact() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log({
-      name, email, phone, category,
-    });
+    // console.log({
+    //   name, email, phone, category,
+    // });
   }
 
   function handlePhoneChange(event) {
-    setPhone(event.target.value);
+    setPhone(formatPhone(event.target.value));
 
     if (!event.target.value) {
       setError({ field: 'phone', message: 'Phone is required.' });
@@ -61,6 +69,7 @@ export default function NewContact() {
       <ContactForm
         labelButton="Cadastrar"
         onSubmit={handleSubmit}
+        disabled={!isDisable}
       >
         <FormGroup error={getErrorMessageByFieldName('name')}>
           <Input
@@ -73,8 +82,9 @@ export default function NewContact() {
 
         <FormGroup error={getErrorMessageByFieldName('email')}>
           <Input
-            value={email}
+            type="email"
             placeholder="E-mail"
+            value={email}
             onChange={handleEmailChange}
             error={getErrorMessageByFieldName('email')}
           />
@@ -82,6 +92,8 @@ export default function NewContact() {
 
         <FormGroup error={getErrorMessageByFieldName('phone')}>
           <Input
+            type="tel"
+            maxLength="15"
             placeholder="Telefone"
             value={phone}
             onChange={handlePhoneChange}
@@ -94,8 +106,9 @@ export default function NewContact() {
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           >
+            <option value="">Categoria</option>
             <option value="1">Instragram</option>
-            <option value="2">LinkInd</option>
+            <option value="2">Linkedin</option>
             <option value="3">Facebook</option>
             <option value="4">Twitter</option>
           </Select>

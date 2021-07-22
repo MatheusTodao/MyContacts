@@ -7,6 +7,7 @@ export const Container = styled.header`
     align-items: center;
     text-decoration: none;
     margin-bottom: 16px;
+    width: 15px;
 
     span {
       color: ${({ theme }) => theme.colors.primary.main};

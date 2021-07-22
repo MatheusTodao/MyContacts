@@ -23,7 +23,7 @@ export default styled.button`
 
   &[disabled] {
     background: ${({ theme }) => theme.colors.primary.lighter};
-    cursor: default;
+    cursor: not-allowed;
   }
 
   ${({ theme, danger }) => danger && css`
