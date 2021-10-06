@@ -1,9 +1,10 @@
-const CategoriesRepository = require('../repository/CategoriesRepository');
+const CategoriesRepository = require('../repositories/CategoriesRepository');
 
 class CategoryController {
   async index(request, response) {
     const { orderBy } = request.query;
     const categories = await CategoriesRepository.findAll(orderBy);
+
     response.json(categories);
   }
 
@@ -11,7 +12,7 @@ class CategoryController {
     const { id } = request.params;
     const category = await CategoriesRepository.findById(id);
     if (!category) {
-      return response.send(404).json({ error: 'Category not found.' });
+      return response.status(404).json({ error: 'Category not found.' });
     }
 
     response.json(category);
@@ -19,13 +20,17 @@ class CategoryController {
 
   async store(request, response) {
     const { name } = request.body;
+    const categoryExists = await CategoriesRepository.findByName({ name });
+    if (categoryExists) {
+      response.status(400).json({ error: 'Category is alredy created.' });
+    }
 
     if (!name) {
-      response.send(400).json({ error: 'Name is required' });
+      response.status(400).json({ error: 'Name is required' });
     }
     const category = await CategoriesRepository.create({ name });
 
-    response.json(category);
+    response.status(201).json(category);
   }
 
   async delete(request, response) {
