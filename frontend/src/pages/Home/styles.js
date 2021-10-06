@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: relative;
   max-height: 100%;
+  margin-bottom: 24px;
 `;
 
 export const InputSearchContainer = styled.div`
@@ -74,6 +75,17 @@ export const ListContainer = styled.section`
     }
   }
 
+`;
+
+export const ListHeader = styled.header`
+  img {
+    transform: ${({ orderBy }) => (
+    orderBy === 'asc'
+      ? 'rotate(180deg)'
+      : 'rotate(-360deg)'
+  )};
+    transition: transform .35s ease;
+  }
 `;
 
 export const Card = styled.article`

@@ -22,6 +22,7 @@ module.exports = {
       1, { "extensions": [".js", ".jsx"] },
     ],
     "react/react-in-jsx-scope": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off"
   },
 };
